@@ -24,7 +24,7 @@ DEBUG = os.environ.get('DEBUG', True)
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -69,11 +70,11 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+
 
 USE_L10N = True
 
@@ -113,3 +114,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
+
+
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE_ENABLED') != 'False'
+
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE_ENABLED') != 'False'
